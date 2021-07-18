@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.binu.hibernate.demo.entity.Address;
 import com.binu.hibernate.demo.entity.Student;
 
 public class CreateStudentAddressDemo {
@@ -18,6 +19,7 @@ public class CreateStudentAddressDemo {
 		SessionFactory factory = new Configuration()
 									.configure("hibernate.cfg.xml")
 									.addAnnotatedClass(Student.class)
+									.addAnnotatedClass(Address.class)
 									.buildSessionFactory();
 		// create session
 		Session session = factory.getCurrentSession();
@@ -26,14 +28,13 @@ public class CreateStudentAddressDemo {
 			
 		
 		// create the object
-			Student tempStudent = new Student("Jill","Fournier","jill_fournier@msn.com");
-			List<String> theImages = tempStudent.getImages();
+			Student tempStudent = new Student("Jill","Fournier","jill.fournier@msn.com");
+
+		// create Address object
+			Address homeAddress = new Address("40 Main St","Seattle","WA");
 			
-			theImages.add("photo1.jpg");
-			theImages.add("photo2.jpg");
-			theImages.add("photo3.jpg");
-			theImages.add("photo4.jpg");
-			theImages.add("photo4.jpg");  // List allows duplicates
+			tempStudent.setHomeAddress(homeAddress);
+			
 		
 		// start a transaction
 			session.beginTransaction();

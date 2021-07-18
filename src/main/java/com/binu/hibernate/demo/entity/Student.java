@@ -1,16 +1,11 @@
 package com.binu.hibernate.demo.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;  // javax.persistence are the JPA annotations
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -28,23 +23,11 @@ public class Student {
 	@Column(name="email")
 	private String email;
 	
-	
-	// Map the element collection
-	
-	// create collection to hold images for the student
-	@ElementCollection
-	@CollectionTable(name="image")
-	@OrderColumn
-	@Column(name="file_name")  // defaults to images if we don't specify an override
-	private List<String> images = new ArrayList<String>();
-	
-	
+	@Embedded  // this is an optional annotation since Hibernate can figure out this will be embedded based on @Ebmeddable annotation in Address class file
+	private Address homeAddress;
 
-	public Student() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
+	
+	
 	public Student(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;
@@ -84,20 +67,21 @@ public class Student {
 		this.email = email;
 	}
 
-	public List<String> getImages() {
-		return images;
+	public Address getHomeAddress() {
+		return homeAddress;
 	}
 
-	public void setImages(List<String> images) {
-		this.images = images;
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
 	}
 
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", images=" + images + "]";
+				+ ", homeAddress=" + homeAddress + "]";
 	}
-
+	
+	
 
 	
 	
