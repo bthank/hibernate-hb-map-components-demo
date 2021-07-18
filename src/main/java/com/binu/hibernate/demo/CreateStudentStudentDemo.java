@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import com.binu.hibernate.demo.entity.Address;
 import com.binu.hibernate.demo.entity.Student;
 
-public class CreateStudentAddressDemo {
+public class CreateStudentStudentDemo {
 
 	
 	public static void main(String[] args) {
