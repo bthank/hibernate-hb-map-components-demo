@@ -30,10 +30,12 @@ public class CreateStudentAddressDemo {
 		// create the object
 			Student tempStudent = new Student("Jill","Fournier","jill.fournier@msn.com");
 
-		// create Address object
-			Address homeAddress = new Address("40 Main St","Seattle","WA");
+		// create Address objects
+ 			Address homeAddress = new Address("40 Main St","Seattle","83921");
+			Address billingAddress = new Address("350 Aberdeen","Redmond","77711");
 			
 			tempStudent.setHomeAddress(homeAddress);
+			tempStudent.setBillingAddress(billingAddress);
 			
 		
 		// start a transaction
